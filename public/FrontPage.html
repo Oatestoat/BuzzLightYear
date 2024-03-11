@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css" />
+    <title>Space Chat</title>
+</head>
+<body>
+    <div id="side-panel">
+        <div id="Explore-text">Explore</div>
+        <ul class="menu__box">
+
+            <li class="menu__item"><a href="#" onclick="startNewChat()">New Chat</a></li>
+            <li class="menu__item"><a href="#">Info Text</a></li>
+            <li class="menu__item"><a href="#" onclick="showQuiz()">Quiz Here!</a></li>
+        </ul>
+    </div>
+
+    
+
+    <div id="chat-container">
+        <div id="chat-messages">
+            <div id="welcome-text">Welcome,</div>
+            <div id="info-text">Viewers Of Hershey!</div>
+            <div id="suggestions">
+                <div class="suggestion" onclick="selectSuggestion('Lorem ipsum dolor sit amet, elit?')">Lorem ipsum dolor sit amet, elit?</div>
+                <div class="suggestion" onclick="selectSuggestion('Lorem ipsum dolor sit amet, elit?')">Lorem ipsum dolor sit amet, elit?</div>
+                <div class="suggestion" onclick="selectSuggestion('Lorem ipsum dolor sit amet, elit?')">Lorem ipsum dolor sit amet, elit?</div>
+                <div class="suggestion" onclick="selectSuggestion('Lorem ipsum dolor sit amet, elit?')">Lorem ipsum dolor sit amet, elit?</div>
+            </div>
+        </div>
+        
+        
+
+        <div id="user-input">
+            <input type="text" id="user-message" placeholder="Type your message..." oninput="handleUserInput()" onkeyup="checkEnter()">
+        </div>
+    </div>
+
+    <script>
+        let chatHistory = [];
+        let currentChat = [];
+        let suggestionsShown = false;
+        let suggestionsClicked = false; 
+
+
+        function sendMessage() {
+            const userMessage = document.getElementById('user-message').value.trim();
+            if (userMessage !== '') {
+                currentChat.push({ type: 'user', message: userMessage });
+                displayMessage(userMessage, 'user');
+                document.getElementById('user-message').value = '';
+                hideSuggestions(); 
+                hideWelcomeText();
+            }
+        }
+
+        function displayMessage(message, type) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageBubble = document.createElement('div');
+            messageBubble.className = type + '-bubble';
+            messageBubble.innerText = message;
+            chatMessages.appendChild(messageBubble);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function selectSuggestion(suggestion) {
+            document.getElementById('user-message').value = suggestion;
+            sendMessage();
+            suggestionsClicked = true;
+        }
+
+
+        function hideSuggestions() {
+            const suggestionsContainer = document.getElementById('suggestions');
+            suggestionsContainer.style.display = 'none';
+        }
+
+        function hideWelcomeText() {
+            const welcomeText = document.getElementById('welcome-text');
+            const infoText = document.getElementById('info-text');
+            welcomeText.style.display = 'none';
+            infoText.style.display = 'none';
+        }
+
+        function startNewChat() {
+            chatHistory = [];
+            currentChat = [];
+            location.reload(); 
+        }
+
+        function showSuggestions() {
+            const suggestionsContainer = document.getElementById('suggestions');
+            suggestionsContainer.style.display = 'flex';
+            suggestionsShown = true;
+        }
+
+        function checkEnter() {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function handleUserInput() {
+            const userInput = document.getElementById('user-message').value;
+
+            if (!suggestionsClicked) {
+                if (userInput.trim() !== '') {
+                    if (!suggestionsShown) {
+                        showSuggestions();
+                    }
+                } else {
+                    hideSuggestions();
+                    showWelcomeText();
+                }
+            }
+        }
+        function showWelcomeText() {
+            const welcomeText = document.getElementById('welcome-text');
+            const infoText = document.getElementById('info-text');
+            welcomeText.style.display = 'block';
+            infoText.style.display = 'block';
+        }
+
+        
+
+    </script>
+</body>
+</html>
