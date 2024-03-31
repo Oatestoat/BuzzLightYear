@@ -19,8 +19,8 @@
         <div class="hidden-content">
           <div class="flex">
             <nav>
-              <button class="new_chat">
-                <span> New Chat </span>
+              <button class="new_chat" onclick="startNewChat()">
+                <span> Restart </span>
                 <i class="fa-solid fa-star outside"></i>
                 <div class="stars">
                   <i class="fa-solid fa-star"></i>
@@ -28,15 +28,15 @@
               </button>
               <div class="bottom">
                 <div class="links">
-                  <a href="#">
+                  <a href="#" onclick="showQuiz()">
                     <i class="fa-regular fa-pen-to-square"></i>
                     Quiz
                   </a>
-                  <a href="#">
+                  <a href="#" onclick="showSchool()">
                     <i class="fa-regular fa-image"></i>
                     Our School
                   </a>
-                  <a href="#">
+                  <a href="#" onclick="showInformation()">
                     <i class="fa-brands fa-readme"></i>
                     Information
                   </a>
@@ -46,7 +46,7 @@
 
             <div id="chat-container">
               <div id="chat-messages">
-                <h1>
+                <h1 id="welcome-text">
                   Hello, Human <br />
                   <span>How Can I Help You?</span>
                 </h1>
@@ -111,7 +111,136 @@
                 </div>
               </div>
 
-              <div id="user-input">
+              <div id="quiz-container" style="display: none;">
+
+                <div class="wrapper">
+                    <div id="quiz">
+                        <div class="left">
+                            <h2>Welcome to<br>
+                                <span> the Quiz</span>
+                            </h2>
+                            <p></p>
+                            <p id="question"></p>
+                        </div>
+                        <div class="right">
+                            <div class="buttons">
+                                <button id="btn0"><span class="letter-box">A</span><span id="choice0"></span></button>
+                                <button id="btn1"><span class="letter-box">B</span><span id="choice1"></span></button>
+                                <button id="btn2"><span class="letter-box">C</span><span id="choice2"></span></button>
+                                <button id="btn3"><span class="letter-box">D</span><span id="choice3"></span></button>
+                            </div>
+                        </div>
+                        <div class="progress-container">
+                            <div id="progress-bar"></div>
+                            <img src="Assets/side-rocket.png" class="barcket" id="barcket" alt="Side Rocket">
+                        </div>
+                    </div>
+                    <!-- Display score -->
+                    <div id="score-container">
+                      <h2>Your Score!</h2>
+                      <span id="score">0</span>
+                      <div id="buttons-container">
+                        <button id="try-again" onclick="resetQuiz()">Try Again</button>
+                        <button id="bonus-button" onclick="turnLightOn()">Turn On Bonus</button>
+                      </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+
+            <div id="our-school-container" class="section-container" style="display: none;">
+              <h2>gallery stuff will go here</h2>
+            </div>
+            
+            <div class="info" id="information-container" style="display: none;">
+              <h2>
+                SkillsUSA at Reading Muhlenberg Career & Technology Center
+              </h2>
+              <p>
+                At RMCTC, SkillsUSA is more than just an organization;
+                it's a cornerstone of our educational approach. As a
+                chapter with students from all program areas, we embody
+                the spirit of SkillsUSA through our commitment to personal
+                development, workplace skills, and technical excellence.
+              </p>
+              <p>
+                Through the Framework, SkillsUSA students hone their
+                hands-on skills against current industry standards in more
+                than 130 occupational areas, from 3-D Animation to Welding
+                and nearly everything in between. At the same time, they
+                develop the transformative career-readiness skills —
+                teamwork, communication, professionalism, leadership and
+                more — that fuel career and life success.
+              </p>
+              <h3>Our Approach</h3>
+              <p>
+                We integrate the SkillsUSA framework into every aspect of
+                our educational experience. Whether it's through classroom
+                learning, co-op opportunities, internships, or community
+                service, we strive to equip our students with the skills
+                they need to succeed in their careers from day one.
+              </p>
+
+              <h3>Community Engagement</h3>
+              <p>
+                Our commitment to SkillsUSA extends beyond the classroom.
+                Through partnerships with local businesses like East Penn
+                Manufacturing, Fraser Advanced, and Reading Hospital,
+                among others, our students gain real-world experience
+                while making meaningful contributions to our community.
+              </p>
+              <h3>Personal and Professional Growth</h3>
+              <p>
+                At RMCTC, we prioritize the development of essential
+                skills such as resume writing, interviewing, and conflict
+                resolution, all of which are integral parts of the
+                SkillsUSA framework. Additionally, our technical skills
+                curriculum is seamlessly integrated into our daily
+                schedule, ensuring that every student receives a
+                comprehensive education.
+              </p>
+              <h3>Core Values</h3>
+              <p>
+                We are guided by the core values of integrity, respect,
+                responsibility, community, and service. These values
+                inform everything we do, from our interactions with
+                students and staff to our partnerships with industry
+                leaders.
+              </p>
+              <h3>Impact</h3>
+              <p>
+                The impact of SkillsUSA at RMCTC is evident in the success
+                stories of our students. From gaining confidence and
+                discovering passions to securing employment in high-demand
+                fields, SkillsUSA has transformed countless lives within
+                our school community.
+              </p>
+              <h3>Symbols and Traditions</h3>
+              <p>
+                From the iconic SkillsUSA emblem to the solemn recitation
+                of the SkillsUSA Pledge, our school embraces the symbols
+                and traditions that define the SkillsUSA experience. These
+                rituals serve as reminders of our shared commitment to
+                professionalism, service, and lifelong learning.
+              </p>
+              <br />
+              <div class="rmctc">
+                <h2>Join Us</h2>
+                <p>
+                  At RMCTC, SkillsUSA isn't just an organization; it's a
+                  community dedicated to empowering students and shaping
+                  the future of the skilled trades. Join us as we continue
+                  to uphold the ideals of SkillsUSA and prepare the next
+                  generation of skilled professionals and leaders.
+                </p>
+              </div>
+            </div>
+
+
+
+              <div id="user-input" class="expander">
                 <input
                   type="text"
                   id="user-message"
@@ -134,10 +263,14 @@
       </div>
 
       <div class="rocket" id="rocket" onclick="expandCircle()">
-        <img src="assets/noun-rocket-1758.png" alt="wf" />
+        <img src="assets/rocket.png" alt="wf" />
       </div>
     </div>
 
     <script src="script.js"></script>
+    <script src="/main.js"></script>
+    <script src="server.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.1"></script>
+
   </body>
 </html>
