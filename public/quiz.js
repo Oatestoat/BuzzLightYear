@@ -54,7 +54,7 @@ function showScores() {
 
   var tryAgainButton = document.getElementById("try-again");
   tryAgainButton.style.display = "block";
-  if (quiz.score > 1) {
+  if (quiz.score >= 3) {
     var bonusButton = document.getElementById("bonus-button");
     bonusButton.style.display = "block";
     bonusButton.addEventListener("click", handleBonusClick);
@@ -124,7 +124,7 @@ function startQuiz() {
 
 function updateProgressBar() {
   var progressBar = document.getElementById("progress-bar");
-  var progress = ((quiz.questionIndex + 0) / quiz.questions.length) * 125;
+  var progress = ((quiz.questionIndex + 0) / quiz.questions.length) * 116;
   progressBar.style.width = progress + "%";
 }
 
@@ -185,6 +185,16 @@ var questions = [
     "What does Blue symbolize within SkillsUSA?",
     ["Justice", "Unity", "Alliance", "Joy"],
     "Unity"
+  ),
+  new Question(
+    "Which is NOT a SkillsUSA Framework category?",
+    ["Personal Skills", "Workplace Skills", "Motor Skills", "Technical Skills"],
+    "Motor Skills"
+  ),
+  new Question(
+    "Which of the following colors is NOT apart of SkillsUSA?",
+    ["Purple", "Red", "Gold", "Blue"],
+    "Purple"
   ),
 ];
 
