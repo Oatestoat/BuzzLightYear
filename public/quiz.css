@@ -148,6 +148,12 @@
   line-height: 4rem;
 }
 
+.out_of {
+  color: #2e6cab;
+  font-size: 3.5rem;
+  line-height: 4rem;
+}
+
 .quiz-container #buttons-container {
   display: flex;
   flex-direction: column;
